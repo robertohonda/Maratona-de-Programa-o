@@ -9,8 +9,8 @@ def fa(i, f):
         if len(aux) >=2 and menor<=sum(aux)<=maior and max(aux) - min(aux)>=diff:
             #print('Entrei', aux)
             cont+=1
-        for k in range(i+1, f+1):
-            fa(k, f)
+        for k in range(i, f):
+            fa(k+1, f)
         aux.pop()
         
 n, menor, maior, diff = map(int, input().split())
