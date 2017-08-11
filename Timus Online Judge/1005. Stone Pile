@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int vet[30], l1=0, l2=0, soma = 0, menor=0;
+
+void proc(int i, int f)
+{
+	if(i<=f)
+	{
+		for(int k=i;k<=f;k++)
+		{
+			l2 += vet[k];
+			l1 = soma - l2;
+			menor = min(menor, abs(l1-l2));
+			proc(k+1, f);
+			l2 -= vet[k];
+		}
+	}
+}
+
+int main(){
+
+	int n;
+
+	scanf(" %d", &n);
+
+	for(int i=0;i<n;i++)
+	{
+		scanf(" %d", &vet[i]);
+		soma += vet[i];
+		menor += vet[i];
+	}
+
+	proc(0, n-1);
+
+	printf("%d\n", menor);
+
+	return 0;
+}
