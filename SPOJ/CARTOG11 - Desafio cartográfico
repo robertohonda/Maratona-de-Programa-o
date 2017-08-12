@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+#define TAM  1000010
+ 
+using namespace std;
+ 
+int v;
+vector<int> mat[TAM];
+int visitado[TAM] = {};
+int cont;
+int maiorNivel = -1;
+int ponta = 1;
+ 
+void DFS(int o)
+{
+    int i, res = 0;
+ 
+    if(cont > maiorNivel)
+    {
+        maiorNivel = cont;
+        ponta = o;
+    }
+ 
+    visitado[o] = 1;
+ 
+    /*Percorrendo os vertices vizinhos*/
+    for(int a : mat[o])
+    {
+        if(visitado[a]==0)
+        {
+            /*Visitando o vertice vizinho*/
+            cont++;
+            DFS(a);
+            cont--;
+        }
+    }
+ 
+}
+ 
+ 
+int main()
+{
+    scanf(" %d", &v);
+ 
+    for(int i=0;i<v-1;i++)
+    {
+        int o, d;
+ 
+        scanf(" %d %d", &o, &d);
+        mat[o].push_back(d);
+        mat[d].push_back(o);
+    }
+ 
+    cont = 0;
+    for(int i=1;i<=v;i++) visitado[i] = 0;
+    DFS(1);
+ 
+    cont = 0;
+    for(int i=1;i<=v;i++) visitado[i] = 0;
+    DFS(ponta);
+ 
+    printf("%d\n", maiorNivel);
+ 
+    return 0;
+}
