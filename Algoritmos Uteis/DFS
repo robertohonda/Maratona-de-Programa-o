@@ -1,0 +1,32 @@
+/**
+@param mat Matriz de grafo
+@param visitado vetor de visitado para controle do algoritmo
+@param vertices numero de vertices
+@param origem vertice origem
+@param destino vertice destino
+@return 1 da pra chegar 0 se nao
+**/
+int DFS(int mat[TAM][TAM], int visitado[TAM], int vertices, int origem, int destino)
+{
+    int i, res = 0;
+
+    /*Imprimindo caminho*/
+    printf("%d ", origem);
+
+    visitado[origem] = 1;
+
+    if(origem == destino)
+        return 1;
+
+    /*Percorrendo os vertices vizinhos*/
+    for(i=0;i<vertices;i++)
+    {
+        if(mat[origem][i] == 1 && visitado[i]==0)
+        {
+            /*Visitando o vertice vizinho*/
+            res = DFS(mat, visitado, vertices, i, destino);
+        }
+    }
+
+    return res;
+}
