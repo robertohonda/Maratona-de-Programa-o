@@ -1,0 +1,37 @@
+int dijkstra(int o, int d)
+{
+    int custo[TAM], menor;
+    int visitado[TAM] = {};
+    int atual;
+ 
+    for(int i=0;i<=v;i++)
+        custo[i] = INF;
+ 
+    custo[o] = 0;
+    atual = o;
+    while(atual!=d)
+    {
+    	visitado[atual] = 1;
+ 
+    	for(No aux : mat[atual])
+            custo[aux.index] = min(custo[aux.index], custo[atual] + aux.custo);
+ 
+        menor = INF;
+ 
+        for(int i=0;i<=v;i++)
+        {
+        	if(custo[i]<menor && !visitado[i])
+        	{
+        		menor = custo[i];
+        		atual = i;
+        	}
+        }
+ 
+        
+        if(menor == INF)
+        	return -1;
+        
+    }
+ 
+    return custo[d];
+}
