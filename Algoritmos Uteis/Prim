@@ -1,0 +1,33 @@
+void proc(int u, int visitado[], vector<vector<No> >& mapa, multiset<No>& setPrim)
+{
+    visitado[u] = 1;
+    for(auto aresta : mapa[u])
+    {
+        /*checando se o vertice vizinho foi visitado*/
+        if(visitado[aresta.index]==0)
+        {
+            /*insere na lista ordenada*/
+            setPrim.insert(aresta);
+        }
+    }
+}
+
+void prim()
+{
+    custo = contAresta =  0;
+    /*executando prim parcial para a origem 0*/
+    prim(0, visitado, mapa, setPrim);
+    while(contAresta != vert-1) //aresta total == vertice total - 1
+    {
+        No arestaAtual = *(setPrim.begin());
+        setPrim.erase(setPrim.begin());
+        /*checando se o vertice da aresta foi visitado*/
+        if(visitado[arestaAtual.index] == 0)
+        {
+            custo += arestaAtual.custo;
+            /*executando prim parcial para o vertice nao visitado da aresta*/
+            prim(arestaAtual.index, visitado, mapa, setPrim);
+            contAresta++;
+        }
+    }
+}
