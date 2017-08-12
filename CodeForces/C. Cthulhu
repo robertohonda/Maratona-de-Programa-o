@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+#define TAM  1000010
+
+using namespace std;
+
+int v;
+vector<int> mat[TAM];
+int visitado[TAM] = {};
+int polvo;
+
+void DFS(int o, int pai)
+{
+    visitado[o] = 1;
+
+    /*Percorrendo os vertices vizinhos*/
+    for(int a : mat[o])
+    {
+        /*Visitando o vertice vizinho*/
+        if(!visitado[a])
+            DFS(a, o);
+        else if(a!=pai && visitado[a] == 1)
+        {
+            if(polvo==1)
+            {
+                polvo = 0;
+                return;
+            }
+            polvo++;
+        }
+    }
+    visitado[o] = 2;
+
+}
+
+
+int main()
+{
+    int a, i;
+	scanf(" %d %d", &v, &a);
+
+	while(a--)
+    {
+		int o, d;
+
+		scanf(" %d %d", &o, &d);
+		mat[o].push_back(d);
+		mat[d].push_back(o);
+	}
+
+    polvo = 0;
+    DFS(1, -1);
+    //cout<<polvo<<endl;
+    for(int i=1;i<=v;i++)
+        if(!visitado[i])
+            polvo = 0;
+
+    if(polvo)
+        printf("FHTAGN!\n");
+    else
+        printf("NO\n");
+
+	return 0;
+}
