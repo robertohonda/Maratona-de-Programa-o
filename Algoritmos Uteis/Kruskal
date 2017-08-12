@@ -1,0 +1,50 @@
+int find(int parent[TAM], int i)
+{
+    if (parent[i] == -1)
+        return i;
+    return find(parent, parent[i]);
+}
+
+void Union(int parent[TAM], int x, int y)
+{
+    int xset = find(parent, x);
+    int yset = find(parent, y);
+    parent[xset] = yset;
+}
+
+int custoMin(multiset<Aresta> setAresta)
+{
+    int custo, contAresta;
+    int i, j, a, x, y;
+    Aresta aresta;
+
+    custo = contAresta = 0;
+    it = setAresta.begin();
+    int parent[TAM];
+    memset(parent, -1, sizeof(int) * TAM);
+    while(contAresta != vert-1)
+    {
+        aresta = *it;
+
+        /*Encontrando os pais dos vertices*/
+        int x = find(parent, aresta.a);
+        int y = find(parent, aresta.b);
+
+        /*verifica se forma ciclo*/
+        if(x == y)
+        {
+            it++;
+            continue;
+        }
+
+        /*fazendo a uniao*/
+        parent[x] = y;
+        
+        contAresta++;
+        custo += aresta.custo;
+
+        it++;
+    }
+
+    return custo;
+}
