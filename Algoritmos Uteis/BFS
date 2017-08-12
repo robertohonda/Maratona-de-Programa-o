@@ -1,0 +1,41 @@
+/**
+@param mat Matriz de Adjacencia
+@param vertices numero de vertices
+@param origem vertice origem
+@param destino vertice destino
+@return 1 da pra chegar 0 se nao
+**/
+int BFS(int mat[TAM][TAM], int vertices, int origem, int destino)
+{
+    vector<int> fila;
+    fila.push_back(origem);
+    int vAtual, i;
+    int visitado[TAM] = {};
+
+    while(!fila.empty())
+    {
+        vAtual = fila[0];
+        fila.erase(fila.begin());
+
+        if(visitado[vAtual] == 1)
+            continue;
+
+        visitado[vAtual] = 1;//visitando no
+
+        /*Imprimindo caminho*/
+        printf("%d ", vAtual);
+
+        if(vAtual == destino)
+            return 1;
+
+        /*Checando vertices vizinhos*/
+        for(i=0;i<vertices;++i)
+        {
+            if(mat[vAtual][i] == 1 && visitado[i] == 0)
+            {
+                fila.push_back(i);
+            }
+        }
+    }
+    return 0;
+}
