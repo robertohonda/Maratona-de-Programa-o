@@ -1,0 +1,19 @@
+int ciclo = 0;
+void DFS(int o, int pai)
+{
+    /*pintando de cinza*/
+    visitado[o] = 1;
+
+    /*Percorrendo os vertices vizinhos*/
+    for(int a : mat[o])
+    {
+        /*Visitando o vertice vizinho*/
+        if(!visitado[a])
+            DFS(a, o);
+        else if(a!=pai && visitado[a] == 1)
+            ciclo++;
+    }
+    /*pintando de preto*/
+    visitado[o] = 2;
+
+}
