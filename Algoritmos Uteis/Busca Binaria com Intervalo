@@ -6,13 +6,13 @@ int bb(int n)
 	while(i<=f)
 	{
 		int meio = (i + f)/2;
-    /*encontrando intervalo [a,b)*/
+    		/*encontrando intervalo [a,b)*/
 		if(vet[meio]<=n and n<vet[meio+1])
 			return meio;
-    /*procura para esquerda*/
+    		/*procura para esquerda*/
 		if(vet[meio]>n)
 			f = meio-1;
-    /*procura para direita*/
+    		/*procura para direita*/
 		else
 			i = meio+1;
 
