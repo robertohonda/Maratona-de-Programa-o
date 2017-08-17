@@ -1,0 +1,21 @@
+int bb(int num){
+	int i, m, f;
+ 
+	i = 0;
+	f = tam-1;
+ 
+	while(true)
+	{
+		if(i > f) { return -1; }
+			
+		m = (i + f)/2;
+ 
+		if(vet[m] == num)
+			return m;
+		if(vet[m] < num)
+			i = m+1;
+		else
+			f = m-1;
+	}
+  
+}
