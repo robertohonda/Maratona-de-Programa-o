@@ -1,0 +1,20 @@
+int bb(int n)
+{
+	int i=0;
+	int f=tam-1;
+
+	while(i<=f)
+	{
+		int meio = (i + f)/2;
+    /*encontrando intervalo [a,b)*/
+		if(vet[meio]<=n and n<vet[meio+1])
+			return meio;
+    /*procura para esquerda*/
+		if(vet[meio]>n)
+			f = meio-1;
+    /*procura para direita*/
+		else
+			i = meio+1;
+
+	}
+}
