@@ -17,6 +17,18 @@ LL fast_exp(LL b, LL e){
 	return ans;
 }
 
+LL fast_exp_itr(LL b, LL e)
+{
+	LL ans = 1;
+	while(e){
+		if(e%2==1)
+			ans *= b;
+		b *= b;
+		e/=2;
+	}
+	return ans;
+}
+
 int main(){
 
 	LL base, exp;
@@ -24,5 +36,6 @@ int main(){
 	cin>>base>>exp;
 
 	cout<<fast_exp(base, exp)<<endl;
+	cout<<fast_exp_itr(base, exp)<<endl;
 
 }
