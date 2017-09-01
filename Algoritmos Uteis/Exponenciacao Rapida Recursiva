@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+typedef long long int LL;
+
+using namespace std;
+
+LL fast_exp(LL b, LL e){
+
+	if(e==0)
+		return 1;
+	LL ans = fast_exp(b, e/2);
+
+	ans = ans * ans;
+
+	if(e%2==1)
+		ans *= b;
+
+	return ans;
+}
+
+int main(){
+
+	LL base, exp;
+
+	cin>>base>>exp;
+
+	cout<<fast_exp(base, exp)<<endl;
+
+}
